@@ -114,11 +114,26 @@ echo "------------------------------------"
 echo "installing Cockpit"
 echo "------------------------------------"
 echo "------------------------------------"
+
+echo "------------------------------------"
+echo "Enabling noble-backports repository"
+echo "------------------------------------"
+if ! grep -rq "^deb .*noble-backports" /etc/apt/sources.list /etc/apt/sources.list.d/ 2>/dev/null; then
+    echo "deb http://archive.ubuntu.com/ubuntu noble-backports main restricted universe multiverse" | tee /etc/apt/sources.list.d/noble-backports.list
+fi
+apt update
 # load OS metadata
-apt install -t noble-backports cockpit
+apt install -t noble-backports cockpit -y
 
+echo "------------------------------------"
+echo "Cockpit install complete"
+echo "------------------------------------"
+echo "------------------------------------"
 
+echo "------------------------------------"
 echo "Installing Dockge"
+echo "------------------------------------"
+echo "------------------------------------"
 mkdir -p /opt/stacks /opt/dockge
 cd /opt/dockge
 curl https://raw.githubusercontent.com/louislam/dockge/master/compose.yaml --output compose.yaml
