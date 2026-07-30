@@ -123,7 +123,7 @@ if ! grep -rq "^deb .*noble-backports" /etc/apt/sources.list /etc/apt/sources.li
 fi
 apt update
 # load OS metadata
-apt install -t noble-backports cockpit -y
+sudo apt install -t noble-backports cockpit -y
 
 echo "------------------------------------"
 echo "Cockpit install complete"
@@ -138,7 +138,7 @@ mkdir -p /opt/stacks /opt/dockge
 cd /opt/dockge
 curl https://raw.githubusercontent.com/louislam/dockge/master/compose.yaml --output compose.yaml
 
-docker compose up -d
+sudo docker compose up -d
 
 echo ""
 echo "------------------------------------"
@@ -170,8 +170,8 @@ if command -v tailscale &> /dev/null; then
     echo "Tailscale is already installed"
 else
     echo "Installing Tailscale"
-    curl -fsSL https://tailscale.com/install.sh | sh
-    tailscale up
+    sudo curl -fsSL https://tailscale.com/install.sh | sh
+    sudo tailscale up
 fi
 
 
