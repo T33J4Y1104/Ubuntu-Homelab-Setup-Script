@@ -115,7 +115,7 @@ echo "installing Cockpit"
 echo "------------------------------------"
 echo "------------------------------------"
 # load OS metadata
-apt install -t "noble-backports" cockpit
+apt install -t noble-backports cockpit
 
 
 echo "Installing Dockge"
