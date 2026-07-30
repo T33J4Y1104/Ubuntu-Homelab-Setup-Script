@@ -34,9 +34,10 @@ fi
 
 if ! command -v fastfetch &> /dev/null; then
     echo "fastfetch is not installed, installing..."
-     add-apt-repository ppa:zhangsongcui3371/fastfetch
-     apt update
-     apt install fastfetch -y
+     wget -qO fastfetch.tar.gz https://github.com/fastfetch-cli/fastfetch/releases/latest/download/fastfetch-linux-amd64.tar.gz
+     sudo tar xf fastfetch.tar.gz --strip-components=3 -C /usr/local/bin fastfetch-linux-amd64/usr/bin/fastfetch
+     fastfetch --version
+     rm -rf fastfetch.tar.gz
 else
     echo "fastfetch is already installed"
 fi
@@ -114,11 +115,7 @@ echo "installing Cockpit"
 echo "------------------------------------"
 echo "------------------------------------"
 # load OS metadata
-. /etc/os-release
-
-CODENAME="${UBUNTU_CODENAME:-$VERSION_CODENAME}"
-
-apt install -t "${CODENAME}-backports" cockpit
+apt install -t "noble-backports" cockpit
 
 
 echo "Installing Dockge"
