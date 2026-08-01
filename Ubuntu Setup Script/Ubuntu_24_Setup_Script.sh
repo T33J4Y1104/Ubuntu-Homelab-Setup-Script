@@ -5,7 +5,7 @@
 echo "------------------------------------"
 echo "Setup Script for homelab Ubuntu 24.04 LTS"
 echo "By: TJ Tiede"
-echo "This script will install curl, net-tools, fastfetch, OpenSSH, Docker, Docker compose, Cockpit, Dockge, and Tailscale"
+echo "This script will install curl, net-tools, samba, fastfetch, OpenSSH, Docker, Docker compose, Cockpit, Dockge, and Tailscale"
 
 echo "------------------------------------"
 echo "------------------------------------"
@@ -15,7 +15,7 @@ apt upgrade -y
 
 echo ""
 echo "------------------------------------"
-echo "Installing basic tools (curl, net-tools, fastfetch)"
+echo "Installing basic tools (curl, net-tools, samba, fastfetch)"
 echo "------------------------------------"
 echo "------------------------------------"
 
@@ -40,6 +40,12 @@ if ! command -v fastfetch &> /dev/null; then
      rm -rf fastfetch.tar.gz
 else
     echo "fastfetch is already installed"
+fi
+if ! command -v smbd &> /dev/null; then
+    echo "samba is not installed, installing..."
+    apt install -y samba
+else
+    echo "samba is already installed"
 fi
 
 echo "------------------------------------"
